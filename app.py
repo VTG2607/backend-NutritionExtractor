@@ -13,7 +13,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 app = Flask(__name__)
 
 
-CORS(app, origins=["*"])  # Allow frontend requests
+CORS(app, origins=["https://frontend-nutritionextract.onrender.com"])  # Allow frontend requests
 
 def ExtractTextPdf(pdf):
     text = ''
@@ -35,7 +35,7 @@ def ExtractDataAi(text):
     prompt =  f"""
     Extract allergens and nutritional values from the following text. Convert all the allergens to english.
     Alot of the data will be in tables and in formats like kj/100g, g/100g or  be in the form of checked boxes,
-    mixed in with highly technical info, etc...
+    mixed in with highly technical info, etc.... Also infer the possible allergens from the product from its name,
     be sure to extract all of it
 
     Output only valid JSON with this format:
