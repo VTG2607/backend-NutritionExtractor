@@ -27,7 +27,7 @@ def ExtractTextPdf(pdf):
 
                 pix  = page.get_pixmap() #Converts page to image (for OCR)
                 img = Image.open(io.BytesIO(pix.tobytes("png")))
-                text += pytesseract.image_to_string(img,lang="eng+hun+deu+fra")
+                text += pytesseract.image_to_string(img)
 
     return text
 
