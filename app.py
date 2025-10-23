@@ -11,6 +11,8 @@ load_dotenv()  # Load variables from .env
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 app = Flask(__name__)
+
+
 CORS(app, origins=["*"])  # Allow frontend requests
 
 def ExtractTextPdf(pdf):
@@ -87,4 +89,6 @@ def extract():
     return ai_result
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "False") == "True"
+    app.run(host="0.0.0.0", port=port, debug=debug)
