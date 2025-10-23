@@ -1,0 +1,75 @@
+# --- Virtual environments ---
+
+.env/
+.venv/
+
+# (Don’t push local environments or virtualenvs)
+
+# --- Python cache & bytecode ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Flask / instance / logs ---
+instance/
+*.log
+*.pid
+*.sqlite3
+*.db
+*.sqlite
+*.db-journal
+
+# --- Environment variables ---
+.env
+*.env
+.env.local
+.env.production
+.env.development
+
+# --- Compiled C extensions ---
+*.so
+
+# --- Pytest / coverage / build ---
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.pytest_cache/
+coverage.xml
+
+# --- IDE / editor specific ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- Temporary / uploads ---
+uploads/
+tmp/
+temp/
+cache/
+
+# --- Build / distribution ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Docs ---
+docs/_build/
+
+# --- Other sensitive / large data ---
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.csv
+*.xlsx
+
+
+static/
