@@ -35,7 +35,7 @@ def ExtractDataAi(text):
     prompt =  f"""
     Extract allergens and nutritional values from the following text. Convert all the allergens to english.
     Alot of the data will be in tables and in formats like kj/100g, g/100g or  be in the form of checked boxes,
-    mixed in with highly technical info, etc.... Also infer the possible allergens from the product from its name,
+    mixed in with highly technical info, etc....
     be sure to extract all of it
 
     Output only valid JSON with this format:
