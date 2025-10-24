@@ -9,7 +9,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()  # Load variables from .env
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")) # initialize an instance of the OpenAI class with an api key
 app = Flask(__name__)
 
 
@@ -25,9 +25,9 @@ def ExtractTextPdf(pdf):
 
             else:
 
-                pix  = page.get_pixmap() #Converts page to image (for OCR)
-                img = Image.open(io.BytesIO(pix.tobytes("png")))
-                text += pytesseract.image_to_string(img)
+                pix  = page.get_pixmap() #Converts page to pixmap (for OCR)
+                img = Image.open(io.BytesIO(pix.tobytes("png"))) # pix.tobytes("png") turns the pixmap the raw binary data of the page,  io.BytesIO() creates a file-like object from bytes in memory.
+                text += pytesseract.image_to_string(img) # tesseract turns the "image" to string
 
     return text
 
@@ -61,29 +61,29 @@ def ExtractDataAi(text):
     {text}
     """
 
-
+    # calling the OpenAI Chat Completions API, through the official Python SDK
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}],
-        response_format={"type": "json_object"}
+        model="gpt-4o-mini", # the model of gpt used
+        messages=[{"role": "user", "content": prompt}], 
+        response_format={"type": "json_object"} #give response in json
     )
 
-    return response.choices[0].message.content
+    return response.choices[0].message.content # grabs the response.
 
 @app.route('/extract', methods=["POST"])
 def extract():
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
-    file = request.files["file"]
-    pdf = file.read()
-    text = ExtractTextPdf(pdf)
+    file = request.files["file"]  # get the file from the uploaded files with the key "file"
+    pdf = file.read() # read the file
+    text = ExtractTextPdf(pdf) #Extract text
 
     if not text.strip():
         return jsonify({"error": "Could not extract text"}), 400
 
 
-    ai_result = ExtractDataAi(text)
+    ai_result = ExtractDataAi(text) # use Ai to analyze text
 
 
     return ai_result
