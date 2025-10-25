@@ -13,7 +13,11 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")) # initialize an instance of
 app = Flask(__name__)
 
 
-CORS(app, origins=["https://frontend-nutritionextract.onrender.com"])  # Allow frontend requests
+CORS(app, origins=["https://frontend-nutritionextract.onrender.com",
+                    "http://localhost:3000",
+                    "http://127.0.0.1:3000",
+                    "http://localhost:5000",
+                    "http://127.0.0.1:5000"])  # Allow frontend requests
 
 def ExtractTextPdf(pdf):
     text = ''
