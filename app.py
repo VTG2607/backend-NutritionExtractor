@@ -12,20 +12,15 @@ load_dotenv()  # Load variables from .env
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")) # initialize an instance of the OpenAI class with an api key
 app = Flask(__name__)
 
-is_debug = os.environ.get("FLASK_DEBUG", "False") == "True"
 
-if is_debug:
-    CORS(app, origins=[
+
+CORS(app, origins=["https://frontend-nutritionextract.onrender.com"
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
         "http://127.0.0.1:3000"
     ])
-else:
 
-    CORS(app, origins=[
-        "https://frontend-nutritionextract.onrender.com"
-    ])
 
 def ExtractTextPdf(pdf):
     text = ''
