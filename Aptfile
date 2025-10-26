@@ -2,4 +2,7 @@ tesseract-ocr
 tesseract-ocr-eng
 tesseract-ocr-hun
 tesseract-ocr-deu
+tesseract-ocr-spa
+tesseract-ocr-ita
+tesseract-ocr-pol
 libtesseract-dev

@@ -36,13 +36,13 @@ def ExtractTextPdf(pdf):
                 img = Image.open(io.BytesIO(pix.tobytes("png"))) # pix.tobytes("png") turns the pixmap the raw binary data of the page,  io.BytesIO() creates a file-like object from bytes in memory.
                 text += pytesseract.image_to_string(img) # tesseract turns the "image" to string
 
-    return text
+    return    text
 
 def ExtractDataAi(text):
     prompt =  f"""
     Extract allergens and nutritional values from the following text. Convert all the allergens to english.
     Alot of the data will be in tables and in formats like kj/100g, g/100g or  be in the form of checked boxes,
-    mixed in with highly technical info, etc....
+    +/-(yes/no) lists, mixed in with highly technical info, etc....
     be sure to extract all of it
 
     Output only valid JSON with this format:
