@@ -53,6 +53,7 @@ Create a .env file in the backend folder:
 > ``OPENAI_API_KEY=your_openai_api_key``
 > ``TESSERACT_CMD=/usr/bin/tesseract   # Adjust path if needed``
 
+Remember to change the CORS settings if you want to use different frontends for it
 
 *  Running Locally
 > ``python app.py``
